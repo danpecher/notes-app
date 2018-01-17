@@ -1,8 +1,13 @@
 import React, {Component} from 'react'
+import Editor from './editor.jsx'
+import Notes from './notes.jsx'
 
 class App extends Component {
     render() {
-        return <h1>Notes app</h1>
+        return <div>
+            <Notes />
+            <Editor />
+        </div>
     }
 }
 
