@@ -2,10 +2,20 @@
     height: 100%;
     display: flex;
     flex: 1;
+    flex-direction: column;
 }
 
 .editable {
     flex: 1;
     padding: 2em;
     background: rgb(236, 236, 236);
+}
+
+.buttons {
+    align-self: flex-end;
+}
+
+.button {
+    width: auto;
+    margin: 1em 1em 1em 0;
 }

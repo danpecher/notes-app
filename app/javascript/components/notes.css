@@ -3,3 +3,7 @@
     border-right: 1px solid;
     height: 100%;
 }
+
+.addButton {
+    margin: 1em;
+}

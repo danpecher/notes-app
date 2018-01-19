@@ -10,3 +10,9 @@ body {
     height: 100vh;
     display: flex;
 }
+
+button {
+    border: 1px solid grey;
+    padding: .5em .7em;
+    cursor: pointer;
+}

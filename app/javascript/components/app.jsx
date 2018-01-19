@@ -1,31 +1,56 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import Editor from './editor.jsx'
 import Notes from './notes.jsx'
 import styles from './app.css'
-
-const DUMMY_NOTES = [
-    {title: 'Note 1', content: 'lorem ipsum 1'},
-    {title: 'Note 2', content: 'lorem ipsum 2'},
-    {title: 'Note 3', content: 'lorem ipsum 3'},
-]
 
 class App extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            activeNote: 0
+            notes: [],
+            activeNote: null
         }
+    }
+
+    getNotes() {
+        axios.get('/notes.json')
+            .then(res => {
+                this.setState({
+                    notes: res.data,
+                    activeNote: res.data.length ? 0 : null
+                })
+            })
+    }
+    
+    addNote() {
+        axios.post('/notes.json', {
+            note: {
+                title: '(No name)'
+            }
+        }).then(() => this.getNotes())
+    }
+
+    componentDidMount() {
+        this.getNotes()
     }
     
     render() {
+        let editor
+        if (this.state.notes[this.state.activeNote]) {
+            editor = <Editor content={this.state.notes[this.state.activeNote].content} />
+        }
         return <div className={styles.container}>
-            <Notes notes={DUMMY_NOTES} onNoteChange={(activeNote) => {
-                this.setState({
-                    activeNote
-                })
-            }} />
-            <Editor content={DUMMY_NOTES[this.state.activeNote].content} />
+            <Notes notes={this.state.notes} 
+                onNoteChange={(activeNote) => {
+                    this.setState({
+                        activeNote
+                    })
+                }} 
+                onAddNote={this.addNote.bind(this)}
+            />
+            {editor}
         </div>
     }
 }

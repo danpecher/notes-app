@@ -5,6 +5,10 @@ import styles from './editor.css'
 class Editor extends Component {
     render() {
         return <div className={styles.container}>
+            <div className={styles.buttons}>
+                <button className={styles.button}>Save</button>
+                <button className={styles.button}>Delete</button>
+            </div>
             <div 
             className={styles.editable}
             contentEditable
@@ -15,7 +19,7 @@ class Editor extends Component {
 }
 
 Editor.propTypes = {
-    content: PropTypes.string.isRequired
+    content: PropTypes.string
 }
 
 export default Editor
