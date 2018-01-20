@@ -26,7 +26,7 @@ class App extends Component {
   addNote() {
     axios
       .post('/notes.json', {
-        note: {}
+        note: {title: null, content: null}
       })
       .then(() => this.getNotes())
   }
@@ -43,6 +43,7 @@ class App extends Component {
         <Editor
           noteId={activeNote.id}
           content={activeNote.content}
+          title={activeNote.title}
           onDelete={() => this.getNotes()}
           onSave={() => this.getNotes()}
         />

@@ -18,7 +18,7 @@ class Note extends Component {
 }
 
 Note.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   isActive: PropTypes.bool.isRequired,
   onClick: PropTypes.func
 }
