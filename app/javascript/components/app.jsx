@@ -26,9 +26,7 @@ class App extends Component {
   addNote() {
     axios
       .post('/notes.json', {
-        note: {
-          title: '(No name)'
-        }
+        note: {}
       })
       .then(() => this.getNotes())
   }

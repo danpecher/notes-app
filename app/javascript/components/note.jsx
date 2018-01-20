@@ -11,7 +11,7 @@ class Note extends Component {
         }`}
         onClick={this.props.onClick}
       >
-        <div className={styles.title}>{this.props.title}</div>
+        <div className={styles.title}>{this.props.title || '(No name)'}</div>
       </div>
     )
   }
