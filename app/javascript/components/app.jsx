@@ -17,8 +17,7 @@ class App extends Component {
   getNotes() {
     axios.get('/notes.json').then(res => {
       this.setState({
-        notes: res.data,
-        activeNote: res.data.length && !this.state.activeNote ? 0 : this.state.activeNote
+        notes: res.data
       })
     })
   }
@@ -26,7 +25,7 @@ class App extends Component {
   addNote() {
     axios
       .post('/notes.json', {
-        note: {title: null, content: null}
+        note: { title: null, content: null }
       })
       .then(() => this.getNotes())
   }
@@ -37,8 +36,10 @@ class App extends Component {
 
   render() {
     let editor
-    if (this.state.notes[this.state.activeNote]) {
-      const activeNote = this.state.notes[this.state.activeNote]
+    const activeNote = this.state.notes.find(
+      note => note.id === this.state.activeNote
+    )
+    if (activeNote) {
       editor = (
         <Editor
           noteId={activeNote.id}

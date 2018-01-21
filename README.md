@@ -2,7 +2,7 @@
 
 - [x] connect to backend notes
 - [x] add / delete / save notes 
-- [ ] search
+- [x] search
 - [ ] formatting note text
 - [ ] user login
 - [ ] autosave

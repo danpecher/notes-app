@@ -7,3 +7,9 @@
 .addButton {
     margin: 1em;
 }
+
+.search {
+    width: 100%;
+    line-height: 1.7em;
+    padding: .5em 1em;
+}

@@ -21,12 +21,14 @@ class Editor extends Component {
     })
   }
   saveNote() {
-    axios.patch(`/notes/${this.props.noteId}.json`, {
-      note: {
-        content: this.refs.content.innerHTML,
-        title: this.state.noteTitle
-      }
-    }).then(this.props.onSave)
+    axios
+      .patch(`/notes/${this.props.noteId}.json`, {
+        note: {
+          content: this.refs.content.innerHTML,
+          title: this.state.noteTitle
+        }
+      })
+      .then(this.props.onSave)
   }
   deleteNote() {
     axios.delete(`/notes/${this.props.noteId}.json`).then(this.props.onDelete)
@@ -36,7 +38,12 @@ class Editor extends Component {
       <div className={styles.container}>
         <div className={styles.toolbar}>
           <div className={styles.search}>
-            <input value={this.state.noteTitle} onChange={this.updateTitle.bind(this)} type="search" placeholder={"Note title ..."}/>
+            <input
+              value={this.state.noteTitle}
+              onChange={this.updateTitle.bind(this)}
+              type="search"
+              placeholder={'Note title ...'}
+            />
           </div>
           <button className={styles.button} onClick={() => this.saveNote()}>
             Save
