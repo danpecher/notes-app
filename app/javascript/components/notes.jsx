@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styles from './notes.css'
 import Note from './note.jsx'
 import PropTypes from 'prop-types'
+import Delta from 'quill-delta'
 
 class Notes extends Component {
   constructor(props) {
@@ -27,9 +28,13 @@ class Notes extends Component {
     if (this.state.query) {
       notes = notes.filter(note => {
         const query = this.state.query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-        const div = document.createElement('div')
-        div.innerHTML = note.content
-        const textContent = div.innerText
+
+        // convert quill delta to text
+        const textContent = new Delta(note.content)
+          .filter(op => typeof op.insert === 'string')
+          .map(op => op.insert)
+          .join('')
+
         return (
           new RegExp(query, 'i').test(note.title) ||
           new RegExp(query, 'i').test(textContent)

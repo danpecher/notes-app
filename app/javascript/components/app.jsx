@@ -16,9 +16,11 @@ class App extends Component {
 
   getNotes() {
     axios.get('/notes.json').then(res => {
-      this.setState({
-        notes: res.data
-      })
+      const newState = { notes: res.data }
+      if (!this.state.activeNote && res.data) {
+        newState.activeNote = res.data[0].id
+      }
+      this.setState(newState)
     })
   }
 

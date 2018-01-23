@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './editor.css'
 import axios from 'axios'
+import Quill from 'quill'
 
 class Editor extends Component {
   constructor(props) {
@@ -14,6 +15,13 @@ class Editor extends Component {
     this.setState({
       noteTitle: props.title || ''
     })
+    this.quill.setContents(props.content)
+  }
+  componentDidMount() {
+    this.quill = new Quill(this.refs.editor, {
+      theme: 'snow'
+    })
+    this.quill.setContents(this.props.content)
   }
   updateTitle(e) {
     this.setState({
@@ -24,7 +32,7 @@ class Editor extends Component {
     axios
       .patch(`/notes/${this.props.noteId}.json`, {
         note: {
-          content: this.refs.content.innerHTML,
+          content: this.quill.getContents(),
           title: this.state.noteTitle
         }
       })
@@ -52,19 +60,14 @@ class Editor extends Component {
             Delete
           </button>
         </div>
-        <div
-          className={styles.editable}
-          contentEditable
-          ref="content"
-          dangerouslySetInnerHTML={{ __html: this.props.content }}
-        />
+        <div ref={'editor'} />
       </div>
     )
   }
 }
 
 Editor.propTypes = {
-  content: PropTypes.string,
+  content: PropTypes.object,
   title: PropTypes.string,
   noteId: PropTypes.number,
   onDelete: PropTypes.func,
