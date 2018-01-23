@@ -45,7 +45,7 @@ class Editor extends Component {
     return (
       <div className={styles.container}>
         <div className={styles.toolbar}>
-          <div className={styles.search}>
+          <div className={styles.title}>
             <input
               value={this.state.noteTitle}
               onChange={this.updateTitle.bind(this)}
@@ -54,10 +54,10 @@ class Editor extends Component {
             />
           </div>
           <button className={styles.button} onClick={() => this.saveNote()}>
-            Save
+            <i className="fa fa-save"></i> Save
           </button>
           <button className={styles.button} onClick={() => this.deleteNote()}>
-            Delete
+            <i className="fa fa-trash"></i> Delete
           </button>
         </div>
         <div ref={'editor'} />

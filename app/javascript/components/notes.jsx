@@ -58,18 +58,20 @@ class Notes extends Component {
     return (
       <div className={styles.container}>
         <button className={styles.addButton} onClick={this.props.onAddNote}>
-          Add note
+          <i className="fa fa-pencil"></i> Add note
         </button>
-        <input
-          type="search"
-          className={styles.search}
-          placeholder={'Search ...'}
-          onChange={e => {
-            this.setState({
-              query: e.target.value
-            })
-          }}
-        />
+        <div className={styles.search}>
+          <i className="fa fa-search"></i>
+          <input
+            type="search"
+            placeholder={'Search ...'}
+            onChange={e => {
+              this.setState({
+                query: e.target.value
+              })
+            }}
+          />
+        </div>
         {notes}
       </div>
     )

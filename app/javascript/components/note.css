@@ -1,18 +1,18 @@
 .container {
-    border-bottom: 1px solid;
+    border-bottom: 1px solid #eeeeee;
     width: 100%;
-    padding: 1.2em 1em;
+    height: 3.5em;
+    line-height: 3.5em;
+    padding: 0 1em;
     cursor: pointer;
 }
 
-.container:hover {
-    background: rgb(218, 218, 218);
-}
-
-.title {
-    font-weight: bold;
+.container:not(.active):hover {
+    color: #000;
+    background: #eeeeee;
 }
 
 .active {
-    background: grey;
+    background: #333;
+    color: #fff;
 }
