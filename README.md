@@ -4,6 +4,6 @@
 - [x] add / delete / save notes 
 - [x] search
 - [x] formatting note text
-- [ ] user login
+- [x] user login
 - [ ] autosave
 - [ ] make pretty

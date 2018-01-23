@@ -1,11 +1,13 @@
 class NotesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_note, only: [:show, :edit, :update, :destroy]
+  before_action :check_owner, only: [:show, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.all.order(id: :desc)
+    @notes = Note.where(user_id: current_user.id).order(id: :desc)
   end
 
   # GET /notes/1
@@ -26,6 +28,7 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @note = Note.new(note_params)
+    @note.user = current_user
 
     respond_to do |format|
       if @note.save
@@ -71,5 +74,9 @@ class NotesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
       params.require(:note).permit(:title, content: {})
+    end
+
+    def check_owner
+      render json: 'Unauthorized', status: 403 if current_user.nil? || current_user != @note.user
     end
 end
