@@ -73,6 +73,9 @@ class Notes extends Component {
           />
         </div>
         {notes}
+        <div className={styles.logoutLink}>
+          <a href="/users/sign_out">Logout</a>
+        </div>
       </div>
     )
   }
