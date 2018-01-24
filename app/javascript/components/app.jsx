@@ -35,6 +35,12 @@ class App extends Component {
   componentDidMount() {
     this.getNotes()
   }
+  
+  updateNoteContent(newContent) {
+    const notes = this.state.notes
+    notes.find(note => note.id === this.state.activeNote).content = newContent
+    this.setState({ notes })
+  }
 
   render() {
     let editor
@@ -49,6 +55,7 @@ class App extends Component {
           title={activeNote.title}
           onDelete={() => this.getNotes()}
           onSave={() => this.getNotes()}
+          onChange={newContent => this.updateNoteContent(newContent)}
         />
       )
     }

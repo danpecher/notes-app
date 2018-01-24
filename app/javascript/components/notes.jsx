@@ -58,10 +58,10 @@ class Notes extends Component {
     return (
       <div className={styles.container}>
         <button className={styles.addButton} onClick={this.props.onAddNote}>
-          <i className="fa fa-pencil"></i> Add note
+          <i className="fa fa-pencil" /> Add note
         </button>
         <div className={styles.search}>
-          <i className="fa fa-search"></i>
+          <i className="fa fa-search" />
           <input
             type="search"
             placeholder={'Search ...'}

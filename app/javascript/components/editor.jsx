@@ -11,17 +11,26 @@ class Editor extends Component {
       noteTitle: props.title || ''
     }
   }
-  componentWillReceiveProps(props) {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.noteId === this.props.noteId) {
+      return
+    }
     this.setState({
-      noteTitle: props.title || ''
+      noteTitle: nextProps.title || ''
     })
-    this.quill.setContents(props.content)
+    this.quill.setContents(nextProps.content)
   }
   componentDidMount() {
     this.quill = new Quill(this.refs.editor, {
       theme: 'snow'
     })
     this.quill.setContents(this.props.content)
+
+    this.quill.on('text-change', (delta, oldDelta, source) => {
+      if (source === 'user') {
+        this.props.onChange(this.quill.getContents())
+      }
+    })
   }
   updateTitle(e) {
     this.setState({
@@ -54,10 +63,10 @@ class Editor extends Component {
             />
           </div>
           <button className={styles.button} onClick={() => this.saveNote()}>
-            <i className="fa fa-save"></i> Save
+            <i className="fa fa-save" /> Save
           </button>
           <button className={styles.button} onClick={() => this.deleteNote()}>
-            <i className="fa fa-trash"></i> Delete
+            <i className="fa fa-trash" /> Delete
           </button>
         </div>
         <div ref={'editor'} />
@@ -71,7 +80,8 @@ Editor.propTypes = {
   title: PropTypes.string,
   noteId: PropTypes.number,
   onDelete: PropTypes.func,
-  onSave: PropTypes.func
+  onSave: PropTypes.func,
+  onChange: PropTypes.func
 }
 
 export default Editor
