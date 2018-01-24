@@ -5,5 +5,5 @@
 - [x] search
 - [x] formatting note text
 - [x] user login
-- [ ] autosave
-- [ ] make pretty
+- [x] make pretty
+- [x] autosave
