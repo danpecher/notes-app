@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.welcome {
+    text-align: center;
+    margin: -5em 0 2em 0;
+}
+
+.flash.alert {
+    font-size: 14px;
+    color: red;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-inner {
+    width: 15em;
+    margin-top: -10vh;
+}
+
+.field {
+    margin: .7em 0;
+}
+
+.field input[type="email"], .field input[type="password"] , input[type="submit"] {
+    border: 1px solid;
+    width: 100%;
+    line-height: 2em;
+    padding: 0 .5em;
+    margin-top: .5em;
+}
+
+input[type="submit"] {
+    -webkit-appearance: none;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 1em 0 2em 0;
+    line-height: 2em;
+    padding-top: .1em;
+    font-weight: 200;
+}
+
+a {
+    color: #000;
+}
